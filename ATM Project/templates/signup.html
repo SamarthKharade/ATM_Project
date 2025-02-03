@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: aqua;
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #dd6eb2;
+            background-color: rgb(230, 120, 76);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.911);
+        }
+        h1 {
+            text-align: center;
+            color: #df0707;
+        }
+        h3 {
+            margin-bottom: 5px;
+            color: #313030;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        input[type="button"]{
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .alert-success {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .alert-danger {
+            background-color: #f44336;
+            color: white;
+        }
+        
+    </style>
+</head>
+<body>
+
+   <!-- Display flash messages -->
+   {% with messages = get_flashed_messages(with_categories=true) %}
+   {% if messages %}
+       <div>
+           {% for category, message in messages %}
+               <div class="alert alert-{{ category }}">
+                   {{ message }}
+               </div>
+           {% endfor %}
+       </div>
+   {% endif %}
+{% endwith %}
+
+    <form method="post" onsubmit="return validate()">
+        <h1>Sign Up</h1>
+        <h3>Enter name :</h3>
+        <input type="text" name="name"  placeholder="Your Name" required>
+        <h3>Enter bank name :</h3>
+        <input type="text" name="bank"  placeholder="Your Bank Name" required>
+        <h3>Enter atm card number :</h3>
+        <input type="password" name="card_number" id="card" placeholder="Your Bank Name" required>
+        <h3>Enter an ATM pin :</h3>
+        <input type="password" name="pin" id="pin1"  placeholder="4-digit PIN" required>
+        <h3>Confirm ATM pin :</h3>
+        <input type="password" name="confirm_pin" id="pin2"  placeholder="Confirm PIN" required>
+        <h3>Enter initial balance :</h3>
+        <input type="text" name="balance"  placeholder="Initial Balance" required >
+        <button type="Submit" >Sign Up</button>
+        <button type="reset">Reset</button>
+        <input type="button" value="Cancel" onclick="closeWindow()">
+        <input type="button" value="Login" onclick="window.location.href='/'">
+    </form>
+
+    <script>
+        function validate() {
+    let pin1 = document.getElementById('pin1').value;
+    let pin2 = document.getElementById('pin2').value;
+    let card1=document.getElementById('card').value;
+    let re = /^\d{4}$/; // Regex to ensure it's a 4-digit number
+
+    let re1 = /^\d{16}$/; // Regex to ensure it's a 16-digit number
+
+    // Validate if both pins are exactly 4 digits
+    if (!re.test(pin1) || !re.test(pin2)) {
+        alert("ATM pin must be a 4-digit number.");
+        return false; // Prevent form submission
+    }
+
+    // Check if both pins match
+    if (pin1 !== pin2) {
+        alert("ATM pin and confirmation do not match.");
+        return false; // Prevent form submission
+    }
+
+    alert("ATM pin is valid.");
+
+    if(!re1.test(card1)){
+        alert("ATM card number must be a 16-digit number.");
+        return false; // Prevent form submission
+
+    }
+    else{
+        alert("ATM card number is valid.");
+    }
+    
+
+
+   
+
+    return true;
+    return render_template("login.html") // Allow form submission
+}
+        function closeWindow() {
+            window.close();
+        }
+    
+    </script>
+</body>
+</html>

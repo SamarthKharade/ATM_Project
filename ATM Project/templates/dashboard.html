@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6d8d8;
+            text-align: center;
+        }
+        .dashboard {
+            display: flex;
+            justify-content: center;
+            
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+        .section {
+            background: rgb(255, 255, 255);
+            padding: 20px;
+            margin: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 200px;
+        }
+        img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST" >
+    <h1>Banking Dashboard</h1>
+    <div class="dashboard">
+        <div class="section"><a href="{{ url_for('handle_image_click', image_id='image1') }}"><img src="{{ url_for('static', filename='images/balance.png') }}" id="b1" alt="Balance" ></a><p>Account Balance Enquiry</p></div>
+        <div class="section"><a href="{{ url_for('handle_image_click', image_id='image2') }}"><img src="{{ url_for('static', filename='images/deposit.jpg') }}" id="d1"alt="Deposit"></a><p>Deposit Amount</p></div>
+        <div class="section"><a href="{{ url_for('handle_image_click', image_id='image3') }}"><img src="{{ url_for('static', filename='images/withdraw.png') }}" id="w1" alt="Withdraw"></a><p>Withdraw Amount</p></div>
+        <div class="section"><a href="{{ url_for('handle_image_click', image_id='image4') }}"><img src="{{ url_for('static', filename='images/changepin.jpg') }}" id="c1"alt="Change PIN"></a><p>Change PIN</p></div>
+        <div class="section"><a href="{{ url_for('handle_image_click', image_id='image5') }}"><img src="{{ url_for('static', filename='images/transaction.png') }}" id="h1" alt="History"></a><p>Transaction History</p></div>
+    </div>
+    </form>
+    <script>
+        // JavaScript can be added here if needed
+    </script>
+</body>
+</html>

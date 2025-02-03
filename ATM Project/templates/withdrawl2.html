@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdraw Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #c6d5f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #b9a2a2;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-size: 16px;
+            color: #0e0303;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 20px 0;
+            border: 1px solid #ad6666;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #62e767;
+            color: rgb(37, 25, 18);
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+        }
+          
+        input[type="button"] {
+            background-color: #fa2525;
+            color: rgb(37, 25, 18);
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+   
+
+        input[type="submit"]:hover {
+            background-color: #80f385;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            text-align: center;
+        }
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .alert-success {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .alert-danger {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div>
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+ {% endwith %}
+    <div class="container">
+        <h2>Withdraw an amount</h2>
+        <!-- Form for PIN and Name -->
+        <form method="POST" onsubmit="return validate3()">
+            
+            <b><label for="amount :">Enter an amount :</label></b>
+
+            <input type="text" id="amount_withdraw" name="amount_withdraw" required placeholder="Amount to be withdraw">
+            <br>
+            
+            
+            <br>
+
+            <input type="Submit" value="Submit" onclick="validate2()">
+            <br>
+            <br>
+            <input type="button" value="Cancel" onclick="window.location.href='/dashboard'">
+            
+        </form>
+    </div>
+
+    <script>
+        // JavaScript can be added here if needed
+
+        function validate2() {
+    let amount1 = document.getElementById('amount_withdraw').value;
+
+
+    let re2 = /^[0-9]{1,6}$/;
+
+    if (!re2.test(amount1)) {
+        alert("Please enter a valid amount");
+        return false;
+    }
+
+    alert("Amount Withdrawn Successfully");
+    return render_template("balance.html")
+    return true;
+}
+
+        </script>
+</body>
+</html>

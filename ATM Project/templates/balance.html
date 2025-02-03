@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Balance Inquiry</title>
+   
+    
+</head>
+<body>
+
+    <style>
+     body{
+        text-align: center;
+        padding:50px
+       
+
+     }
+
+
+
+
+
+    </style>
+    <form method="POST">
+    <div class="balancecheck">
+    <h1>Your Current Balance</h1>
+     <a href="{{ url_for('handle_image_click', image_id='image1') }}"><img src="{{ url_for('static', filename='images/balance2.png') }}"  width="350" height="200" id="b1"  >
+    
+    </a>
+    
+    <b><p id="balance">Balance: ${{ balance }}</p></b>
+    <br><br>
+
+    <a href='/dashboard'>Go Back</a>
+    </div>
+
+</form>
+    
+    
+    
+
+</div>
+     
+</body>
+</html>

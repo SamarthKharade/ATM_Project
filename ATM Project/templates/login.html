@@ -1,0 +1,123 @@
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+
+    
+   <!-- Display flash messages -->
+   {% with messages = get_flashed_messages(with_categories=true) %}
+   {% if messages %}
+       <div>
+           {% for category, message in messages %}
+               <div class="alert alert-{{ category }}">
+                   {{ message }}
+               </div>
+           {% endfor %}
+       </div>
+   {% endif %}
+{% endwith %}
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: rgb(241, 122, 192);
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #8dfadf;
+            background-color: rgb(241, 137, 68);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.911);
+        }
+        h1 {
+            text-align: center;
+            color: #df0707;
+        }
+        h3 {
+            margin-bottom: 5px;
+            color: #313030;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .alert-success {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .alert-danger {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+    <form  method="post" onsubmit="return validate()">
+        <h1>Login</h1>
+        <h3>Enter an atm card number :</h3>
+        <input type="password" name="name3" placeholder="Enter valid atm card number" id="card2" required>
+        <h3>Enter ATM pin:</h3>
+        <input type="password" name="pin2" placeholder="4-digit PIN" id="pin2" required>
+        <button type="submit">Login</button>
+        <button type="reset">Reset</button>
+        <button type="button" onclick="closeWindow()">Cancel</button>
+        <button type="button" value="Sign Up" onclick="window.location.href='/signup'">Sign Up</button>
+    </form>
+
+    <script>
+        function validate() {
+           
+            let pin2 = document.getElementById('pin2').value;
+            let card2 = document.getElementById('card2').value; 
+            let re = /^\d{4}$/;
+            let re2 = /^\d{16}$/;
+
+            if ( !re.test(pin2)) {
+                alert("ATM pin must be a 4-digit number.");
+                return false; // Prevent form submission
+            }
+            else{
+                alert("ATM pin is valid.");
+            }
+            if ( !re2.test(card2)) {
+                alert("ATM card number must be a 16-digit number.");
+                return false; // Prevent form submission
+            }
+            else{
+                alert("ATM card number is valid.");
+            }
+
+         
+            return true; // Allow form submission
+        }
+            
+            
+        
+        function closeWindow() {
+            window.close();
+        }
+        </script>
+
+</body>
